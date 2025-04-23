@@ -13,13 +13,10 @@ import com.example.loginregisterapp.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 
-    // Menggunakan ViewModel
     private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Enable Edge-to-edge untuk memperpanjang konten hingga ke ujung layar
         enableEdgeToEdge()
 
         // Menggunakan DataBinding
@@ -30,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.viewModel = userViewModel
         binding.lifecycleOwner = this
 
-        // Menambahkan listener untuk insets agar layout menyesuaikan dengan sistem status bar
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -43,7 +39,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        // Mendengarkan perubahan pada registrasiSuccess
         userViewModel.registrationSuccess.observe(this) { success ->
             if (success) {
                 // Pindah ke halaman login jika registrasi berhasil
@@ -53,7 +48,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        // Setup aksi untuk tombol register
         binding.btnRegister.setOnClickListener {
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()

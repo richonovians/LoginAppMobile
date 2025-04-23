@@ -28,7 +28,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val email = prefs.getString("email", null)
         if (email != null) {
             viewModelScope.launch {
-                val user = userDao.getUserByEmail(email)  // Ambil user berdasarkan email yang sudah login
+                val user = userDao.getUserByEmail(email)
                 userLiveData.postValue(user)
             }
         } else {
@@ -58,7 +58,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun onRegisterTextClick() {
         val context = getApplication<Application>().applicationContext
         val intent = Intent(context, RegisterActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // Penting karena kita pakai application context
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 
@@ -145,6 +145,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun update(user: User) = viewModelScope.launch {
         userDao.update(user)
         userLiveData.postValue(user)
-        updateSuccess.postValue(true)  // <-- Tambahkan ini supaya observer di Activity terpanggil
+        updateSuccess.postValue(true)
     }
 }
