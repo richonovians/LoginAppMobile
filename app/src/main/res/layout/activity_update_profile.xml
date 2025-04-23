@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.loginregisterapp.UserViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="@drawable/background"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Header Teks -->
+            <TextView
+                android:id="@+id/tvHeader"
+                android:text="Edit Profil Pengguna"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#3F51B5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="16dp"
+                card_view:cardElevation="6dp"
+                android:background="@android:color/white"
+                android:padding="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Name -->
+                    <EditText
+                        android:id="@+id/etName"
+                        android:hint="Nama"
+                        android:text="@={viewModel.name}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        android:background="@android:drawable/edit_text"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Email -->
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:hint="Email"
+                        android:text="@={viewModel.email}"
+                        android:inputType="textEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        android:background="@android:drawable/edit_text"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Password -->
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:hint="Password"
+                        android:text="@={viewModel.password}"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        android:background="@android:drawable/edit_text"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Phone -->
+                    <EditText
+                        android:id="@+id/etPhone"
+                        android:hint="No HP"
+                        android:text="@={viewModel.phone}"
+                        android:inputType="phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        android:background="@android:drawable/edit_text"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Address -->
+                    <EditText
+                        android:id="@+id/etAddress"
+                        android:hint="Alamat"
+                        android:text="@={viewModel.address}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        android:background="@android:drawable/edit_text"
+                        android:layout_marginBottom="24dp" />
+
+                    <!-- Update Button -->
+                    <Button
+                        android:id="@+id/btnUpdate"
+                        android:text="Update Profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="#2196F3"
+                        android:onClick="@{() -> viewModel.onUpdateProfileClick()}" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</layout>
