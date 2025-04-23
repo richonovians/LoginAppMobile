@@ -49,16 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-            val name = binding.etName.text.toString()
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
-            val phone = binding.etPhone.text.toString()
-            val address = binding.etAddress.text.toString()
-
-            // Register User dengan data yang dimasukkan
-            val user = User(name = name, email = email, password = password, phone = phone, address = address)
-            userViewModel.register(user)
+            userViewModel.onRegisterClick()
         }
     }
 }
-

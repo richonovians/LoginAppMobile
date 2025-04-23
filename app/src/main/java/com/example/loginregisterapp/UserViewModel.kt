@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -37,6 +38,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun onRegisterClick() {
+        if (!isInputValid()) {
+            Toast.makeText(getApplication(), "Semua kolom harus diisi!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val nameValue = name.value ?: ""
         val emailValue = email.value ?: ""
         val passwordValue = password.value ?: ""
@@ -54,6 +60,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         register(newUser)
         Log.d("UserViewModel", "Tombol Register diklik")
     }
+
 
     fun onRegisterTextClick() {
         val context = getApplication<Application>().applicationContext
@@ -146,5 +153,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         userDao.update(user)
         userLiveData.postValue(user)
         updateSuccess.postValue(true)
+    }
+
+    fun isInputValid(): Boolean {
+        return !name.value.isNullOrBlank() &&
+                !email.value.isNullOrBlank() &&
+                !password.value.isNullOrBlank() &&
+                !phone.value.isNullOrBlank() &&
+                !address.value.isNullOrBlank()
     }
 }
